@@ -1,0 +1,27 @@
+.cell {
+	width: 50px;
+	height: 50px;
+}
+
+.select {
+	background-color: rgb(80, 80, 255);
+}
+
+.table > * {
+	text-align: center;
+}
+
+.table td,
+.table th {
+	width: 50px;
+	height: 50px;
+}
+
+.active {
+	font-weight: bold;
+}
+
+.code-block {
+	overflow: unset;
+	height: 200px;
+}
