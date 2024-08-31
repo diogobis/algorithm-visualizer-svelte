@@ -1,9 +1,22 @@
 <script>
 	import { page } from "$app/stores";
 
-	let routes = [
-		["/", "Home"],
-		["/matrix-multiplication", "Matrix Multiplication"],
+	let routeGroups = [
+		{
+			label: "Navigation",
+			routes: [["/", "Home"]],
+		},
+		{
+			label: "Sorting",
+			routes: [
+				["/quicksort", "Quicksort"],
+				["/bubble-sort", "Bubble Sort"],
+			],
+		},
+		{
+			label: "Math",
+			routes: [["/matrix-multiplication", "Matrix Multiplication"]],
+		},
 	];
 </script>
 
@@ -21,69 +34,37 @@
 		<span class="fs-5 fw-semibold">Collapsible</span>
 	</a>
 	<ul class="list-unstyled ps-0">
-		<li class="mb-1">
-			<button
-				class="btn btn-toggle align-items-center rounded collapsed"
-				data-bs-toggle="collapse"
-				data-bs-target="#home-collapse"
-				aria-expanded="true"
-			>
-				Home
-			</button>
-			<div class="collapse show" id="home-collapse">
-				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					<li><a href="#" class="nav-link">Overview</a></li>
-					<li><a href="#" class="nav-link">Updates</a></li>
-					<li><a href="#" class="nav-link">Reports</a></li>
-				</ul>
-			</div>
-		</li>
-		<li class="mb-1">
-			<button
-				class="btn btn-toggle align-items-center rounded collapsed"
-				data-bs-toggle="collapse"
-				data-bs-target="#dashboard-collapse"
-				aria-expanded="false"
-			>
-				Dashboard
-			</button>
-			<div class="collapse" id="dashboard-collapse" style="">
-				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					<li><a href="#" class="nav-link">Overview</a></li>
-					<li><a href="#" class="nav-link">Weekly</a></li>
-					<li><a href="#" class="nav-link">Monthly</a></li>
-					<li><a href="#" class="nav-link">Annually</a></li>
-				</ul>
-			</div>
-		</li>
-		<li class="mb-1">
-			<button
-				class="btn btn-toggle align-items-center rounded collapsed"
-				data-bs-toggle="collapse"
-				data-bs-target="#orders-collapse"
-				aria-expanded="false"
-			>
-				Orders
-			</button>
-			<div class="collapse" id="orders-collapse" style="">
-				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					<li><a href="#" class="nav-link">New</a></li>
-					<li><a href="#" class="nav-link">Processed</a></li>
-					<li><a href="#" class="nav-link">Shipped</a></li>
-					<li><a href="#" class="nav-link">Returned</a></li>
-				</ul>
-			</div>
-		</li>
-
-		{#each routes as route}
-			<li class="nav-item mb-1">
-				<a
-					class="nav-link"
-					class:active={$page.url.pathname === route[0]}
-					href={route[0]}>{route[1]}</a
+		{#each routeGroups as group}
+			<li class="mb-1">
+				<button
+					class="btn btn-toggle align-items-center rounded collapsed"
+					data-bs-toggle="collapse"
+					data-bs-target={`#${group.label}-collapse`}
+					aria-expanded="true"
 				>
+					{group.label}
+				</button>
+				<div
+					class="collapse show"
+					id={`${group.label}-collapse`}
+					style=""
+				>
+					<ul
+						class="btn-toggle-nav list-unstyled fw-normal pb-1 small"
+					>
+						{#each group.routes as route}
+							<li class="nav-item mb-1">
+								<a
+									class="nav-link"
+									class:active={$page.url.pathname ===
+										route[0]}
+									href={route[0]}>{route[1]}</a
+								>
+							</li>
+						{/each}
+					</ul>
+				</div>
 			</li>
 		{/each}
-		<li class="mb-1"></li>
 	</ul>
 </div>
