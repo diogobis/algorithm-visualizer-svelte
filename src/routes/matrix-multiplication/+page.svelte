@@ -6,6 +6,7 @@
 	import { sleep, InfoBuilder } from "$lib/index.js";
 
 	let info = new InfoBuilder();
+	info.addText("Complexity: O(n³)");
 	info.addText(
 		"Matrix multiplication is a mathematical operation that involves multiplying elements of two matrices together in a specific way. The result is another matrix."
 	);
@@ -55,6 +56,7 @@ B = [[5, 6],
 		[10, 11, 12],
 	];
 	let selectedA = new Set();
+	let accessedA = new Set();
 
 	let matrixB = [
 		[1, 2, 3, 4],
@@ -62,9 +64,11 @@ B = [[5, 6],
 		[9, 10, 11, 12],
 	];
 	let selectedB = new Set();
+	let accessedB = new Set();
 
 	let matrixC = [];
 	let selectedC = new Set();
+	let accessedC = new Set();
 
 	async function matrixMultiplication(A, B) {
 		if (A.length !== B[0].length) return null;
@@ -115,6 +119,7 @@ B = [[5, 6],
 			title="Matrix A"
 			array2D={matrixA}
 			selected={selectedA}
+			accessed={accessedA}
 		></Array2DVisualizer>
 	</div>
 
@@ -123,6 +128,7 @@ B = [[5, 6],
 			title="Matrix B"
 			array2D={matrixB}
 			selected={selectedB}
+			accessed={accessedB}
 		></Array2DVisualizer>
 	</div>
 
@@ -131,6 +137,7 @@ B = [[5, 6],
 			title="Matrix C"
 			array2D={matrixC}
 			selected={selectedC}
+			accessed={accessedC}
 		></Array2DVisualizer>
 	</div>
 
