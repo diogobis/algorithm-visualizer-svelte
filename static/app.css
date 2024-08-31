@@ -7,6 +7,10 @@
 	background-color: rgb(80, 80, 255);
 }
 
+.access {
+	background-color: rgb(240, 64, 64);
+}
+
 .table > * {
 	text-align: center;
 }
@@ -23,5 +27,4 @@
 
 .code-block {
 	overflow: unset;
-	height: 200px;
 }
