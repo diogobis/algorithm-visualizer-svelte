@@ -2,6 +2,7 @@
 	export let title;
 	export let array2D;
 	export let selected;
+	export let accessed;
 
 	let cols = new Array(array2D[0].length).fill(0).map((_, i) => i);
 </script>
@@ -38,6 +39,7 @@
 					<td
 						class="border border-1"
 						class:select={selected.has(r + ":" + c)}
+						class:access={accessed.has(r + ":" + c)}
 					>
 						{cell}
 					</td>
