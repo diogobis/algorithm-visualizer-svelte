@@ -11,6 +11,7 @@
 			routes: [
 				["/quicksort", "Quicksort"],
 				["/bubble-sort", "Bubble Sort"],
+				["/selection-sort", "Selection Sort"],
 			],
 		},
 		{
