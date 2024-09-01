@@ -46,13 +46,19 @@
 	let array = random1DArray(100, true);
 	let selected = new Set();
 	let accessed = new Set();
-
-	selected = selected;
+	let unused = new Set();
 
 	async function selectionSort() {
 		for (let i = 0; i < array.length; i++) {
 			let min = array[i];
 			let minIndex = i;
+
+			if (i == array.length - 1) {
+				unused.clear();
+			} else {
+				unused.add(i - 1);
+			}
+			unused = unused;
 
 			selected.add(i);
 			selected.add("0:" + i);
@@ -104,7 +110,7 @@
 <div class="vh-100 max-h-100 overflow-hidden parent">
 	<div class="div1">
 		<!-- <canvas bind:this={canvas}></canvas> -->
-		<ChartBarVisualizer data={array} {selected} {accessed}
+		<ChartBarVisualizer data={array} {selected} {accessed} {unused}
 		></ChartBarVisualizer>
 	</div>
 
