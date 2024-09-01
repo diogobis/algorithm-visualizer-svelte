@@ -8,6 +8,23 @@ export function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+export function random1DArray(len, unique = false) {
+	if (unique) {
+		let result = [];
+		while (result.length < len) {
+			var r = Math.floor(Math.random() * len - 1) + 1;
+
+			if (result.indexOf(r) === -1) result.push(r);
+		}
+
+		return result;
+	} else {
+		return new Array(len)
+			.fill(0)
+			.map((_) => Math.floor(Math.random() * len) + 1);
+	}
+}
+
 export class InfoBuilder {
 	constructor(elements = []) {
 		this.elements = elements;
