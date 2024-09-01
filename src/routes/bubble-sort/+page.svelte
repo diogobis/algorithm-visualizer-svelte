@@ -5,7 +5,7 @@
 	import Logger from "$lib/Logger/index.svelte";
 	import AlgorithmInfo from "$lib/AlgorithmInfo/index.svelte";
 
-	import { sleep, InfoBuilder } from "$lib/index.js";
+	import { sleep, InfoBuilder, random1DArray } from "$lib/index.js";
 
 	let info = new InfoBuilder();
 	info.addText("Complexity: O(n²)");
@@ -36,12 +36,10 @@
 
 	info.addImage("../../../static/images/bubblesort.png");
 
-	const DELAY = 25;
+	const DELAY = 1;
 	let logs = [];
 
-	let array = new Array(25)
-		.fill(0)
-		.map((_) => Math.floor(Math.random() * 24) + 1);
+	let array = random1DArray(25, true);
 	let selected = new Set();
 	let accessed = new Set();
 
