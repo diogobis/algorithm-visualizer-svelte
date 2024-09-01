@@ -5,6 +5,7 @@
 	export let data;
 	export let selected;
 	export let accessed;
+	export let unused = new Set();
 
 	let canvas;
 	let chart;
@@ -64,11 +65,13 @@
 			datasets: [
 				{
 					backgroundColor: data.map((_, index) => {
-						return accessed.has(index)
-							? "rgb(240, 64, 64)"
-							: selected.has(index)
-								? "rgb(80, 80, 255)"
-								: "rgb(120,120,120)";
+						return unused.has(index)
+							? "rgba(120,120,120,0.3)"
+							: accessed.has(index)
+								? "rgb(240, 64, 64)"
+								: selected.has(index)
+									? "rgb(80, 80, 255)"
+									: "rgb(120,120,120)";
 					}),
 					data: data.map((value) => value),
 				},
