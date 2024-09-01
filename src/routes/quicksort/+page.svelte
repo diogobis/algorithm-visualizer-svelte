@@ -5,7 +5,7 @@
 	import Logger from "$lib/Logger/index.svelte";
 	import AlgorithmInfo from "$lib/AlgorithmInfo/index.svelte";
 
-	import { sleep, InfoBuilder } from "$lib/index.js";
+	import { sleep, InfoBuilder, random1DArray } from "$lib/index.js";
 
 	let info = new InfoBuilder();
 	info.addText("Complexity: O(n log n)");
@@ -24,7 +24,7 @@
     return array;
   }
 
-  var pivot = array[0];
+  var pivot = array[array.length-1];
   
   var left = []; 
   var right = [];
@@ -38,20 +38,33 @@
 
 	info.addImage("../../../static/images/quicksort.png");
 
-	const DELAY = 50;
+	const DELAY = 0.5;
 	let logs = [];
 
-	let array = new Array(25)
-		.fill(0)
-		.map((_) => Math.floor(Math.random() * 24) + 1);
+	let array = random1DArray(200, true);
+
 	let selected = new Set();
 	let accessed = new Set();
+	let unused = new Set();
 
 	selected = selected;
 
 	async function quicksort(input, startingIndex = 0) {
 		accessed.clear();
 		accessed = accessed;
+
+		unused.clear();
+		if (
+			startingIndex != array.length &&
+			startingIndex != array.length - 1
+		) {
+			for (let i = 0; i < array.length; i++) {
+				if (i < startingIndex || i >= startingIndex + input.length) {
+					unused.add(i);
+				}
+			}
+		}
+		unused = unused;
 
 		if (input.length <= 1) {
 			return input;
@@ -60,7 +73,10 @@
 		let left = [];
 		let right = [];
 
-		let pivotIndex = Math.floor(input.length / 2);
+		// let pivotIndex = Math.floor(input.length / 2);
+		// let pivot = input[pivotIndex];
+
+		let pivotIndex = input.length - 1;
 		let pivot = input[pivotIndex];
 
 		logs.push(`Pivot is [${pivotIndex}]=${pivot}`);
@@ -124,6 +140,9 @@
 		logs.push("===============================");
 		logs = logs;
 
+		unused.clear();
+		unused = unused;
+
 		return new Array().concat(
 			await quicksort(left, startingIndex),
 			pivot,
@@ -137,7 +156,7 @@
 <div class="vh-100 max-h-100 overflow-hidden parent">
 	<div class="div1">
 		<!-- <canvas bind:this={canvas}></canvas> -->
-		<ChartBarVisualizer data={array} {selected} {accessed}
+		<ChartBarVisualizer data={array} {selected} {accessed} {unused}
 		></ChartBarVisualizer>
 	</div>
 
