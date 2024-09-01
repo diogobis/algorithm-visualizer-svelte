@@ -29,7 +29,7 @@ B = [[5, 6],
 	);
 	info.addBlock(`C[0][0] = (1 * 5) + (2 * 7) = 19`);
 	info.addText("Similarly, we can calculate the other elements of C.");
-	info.addImage("../../../static/images/matrix_multiplication.jpg");
+	info.addImage("images/matrix_multiplication.jpg");
 	info.addBlock(`function matrixMultiplication(A, B) {
 	if (A.length !== B[0].length) return null;
 

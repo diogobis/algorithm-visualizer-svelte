@@ -34,7 +34,7 @@
 	}
 }`);
 
-	info.addImage("../../../static/images/bubblesort.png");
+	info.addImage("images/bubblesort.png");
 
 	const DELAY = 1;
 	let logs = [];

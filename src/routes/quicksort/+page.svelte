@@ -36,7 +36,7 @@
   return quicksort(left).concat(pivot, quicksort(right));
 };`);
 
-	info.addImage("../../../static/images/quicksort.png");
+	info.addImage("images/quicksort.png");
 
 	const DELAY = 0.5;
 	let logs = [];
